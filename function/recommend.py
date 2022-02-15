@@ -1,12 +1,14 @@
 import pandas as pd
 
 
-class movie:# 선언시 rating_data와 movies_data 필요
+class movie:
+    # 선언시 user_ratings와 df 필요
+    # user_ratings는  tuple 또는 list 형태로 받는다. (('userID','itemID','rating'))의 형태
+    # movies 는 title 컬럼을 가진 영화 목록 데이터프레임이다.
+    def __init__(self,user_ratings,movies):
 
-    def __init__(self,rating_data,movies_data):
-
-        self.ratings=pd.DataFrame(rating_data,columns=['userid','title','rating'])
-        self.movies=movies_data
+        self.ratings=pd.DataFrame(user_ratings,columns=['userid','title','rating'])
+        self.movies=movies
 
 
         
@@ -43,8 +45,8 @@ class movie:# 선언시 rating_data와 movies_data 필요
         top_movies_preds = [(ids,rating,title) for ids,rating,title in zip(top_movie_ids, top_movie_ratings, top_movie_titles)]
 
         for top_movie in top_movies_preds:
-            print('* 추천 영화 이름: ', top_movie[2])
-            print('* 해당 영화의 예측평점: ', top_movie[1])
+            print('추천 영화: ', top_movie[2])
+            print('예측평점: ', top_movie[1])
             print()
 
         return top_movies_preds

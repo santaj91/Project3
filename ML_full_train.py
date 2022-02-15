@@ -35,9 +35,8 @@ df=pd.DataFrame(list(tuple_df))
 # suprise 라이브러리를 사용하기 위해 사용자 , 이름, 평점 순으로 바꿔준다.
 df=df.drop(columns=[0,4]).rename(columns={1:'userID',2:'itemID',3:'rating'})
 
-# movies 목록을 따로 추출해준다.
+# recommend 함수에 넣을 변수이다.
 movies=df['itemID'].drop_duplicates(keep='first').to_frame(name='title')
-
 
 reader= Reader(rating_scale=(0,10))
 data= Dataset.load_from_df(df[['userID','itemID','rating']], reader)
@@ -70,12 +69,12 @@ joblib.dump(algorithm,'./model.pkl')
 
 
 
-# rating_data=list(tuple1)
-
-# movies_data=movies
+# user_ratings=list(tuple1)
 
 
-# a=movie(rating_data,movies_data)
+
+
+# a=movie(user_ratings,movies)
 
 # userid='bcad'
 

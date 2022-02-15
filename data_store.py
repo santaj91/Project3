@@ -1,5 +1,5 @@
 import pymysql
-from scraping.scraping import get_data
+from function.scraping import get_data
 from time import sleep
 
 conn=pymysql.connect(
